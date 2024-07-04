@@ -36,6 +36,7 @@ body {
   left: 2px;
   top: 47px;
   padding: 0px;
+  transition: 0.5s;
 }
 
 .task {
@@ -51,4 +52,37 @@ body {
 
 .task-tabs div {
   cursor: pointer;
+}
+
+#add-button {
+  background-color: purple;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+#add-button:hover {
+  background-color: darkorchid;
+}
+
+#done-button {
+  background-color: mediumaquamarine;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+#done-button:hover {
+  background-color: lightseagreen;
+}
+
+#delete-button {
+  background-color: pink;
+  border: none;
+  cursor: pointer;
+}
+
+#delete-button:hover {
+  background-color: deeppink;
 }

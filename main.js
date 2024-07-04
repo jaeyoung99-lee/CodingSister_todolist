@@ -4,8 +4,15 @@ let tabs = document.querySelectorAll(".task-tabs div");
 let taskList = [];
 let filterList = []; // 필터링된 데이터가 저장되는 배열
 let mode = "all"; // 처음 상태는 전체를 보여주는 것이므로 all로 초기화
+let underLine = document.getElementById("under-line");
 
 addButton.addEventListener("click", addTask);
+
+taskInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    addTask(event);
+  }
+});
 
 for (let i = 1; i < tabs.length; i++) {
   tabs[i].addEventListener("click", function (event) {
@@ -14,25 +21,33 @@ for (let i = 1; i < tabs.length; i++) {
 }
 
 function addTask() {
-  // let taskContent = taskInput.value;
-  // taskList.push(taskContent);
+  let taskContent = taskInput.value;
+
+  if (taskContent === "") {
+    return alert("할 일을 입력하세요!");
+  }
+
   let task = {
     id: randomIDGenerate(),
-    taskContent: taskInput.value,
+    taskContent: taskContent,
     isComplete: false,
   };
+
   taskList.push(task);
+  taskInput.value = "";
   render();
 }
 
 function render() {
   let list = [];
+  let resultHTML = "";
+
   if (mode === "all") {
     list = taskList;
   } else if (mode === "ongoing" || mode === "done") {
     list = filterList;
   }
-  let resultHTML = "";
+
   for (let i = 0; i < list.length; i++) {
     if (list[i].isComplete == true) {
       resultHTML += `
@@ -53,8 +68,8 @@ function render() {
               ${list[i].taskContent}
           </div>
           <div>
-              <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
-              <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash"></i></button>
+              <button id="done-button" onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
+              <button id="delete-button" onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash"></i></button>
           </div>
       </div>
       `;
@@ -73,7 +88,7 @@ function toggleComplete(id) {
       break;
     }
   }
-  render();
+  filter();
 }
 
 function deleteTask(id) {
@@ -83,11 +98,17 @@ function deleteTask(id) {
       break;
     }
   }
-  render();
+  filter();
 }
 
 function filter(event) {
-  mode = event.target.id;
+  if (event) {
+    mode = event.target.id;
+    underLine.style.width = event.target.offsetWidth + "px";
+    underLine.style.left = event.target.offsetLeft + "px";
+    underLine.style.top = event.target.offsetTop + 47 + "px";
+  }
+
   filterList = [];
 
   if (mode === "all") {
