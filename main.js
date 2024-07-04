@@ -56,8 +56,8 @@ function render() {
             ${list[i].taskContent}
         </div>
         <div>
-            <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-rotate-left"></i></button>
-            <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash"></i></button>
+            <button id="return-button" onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-rotate-left"></i></button>
+            <button id="delete-button" onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash"></i></button>
         </div>
     </div>
     `;

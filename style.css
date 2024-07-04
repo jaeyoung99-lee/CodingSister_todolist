@@ -3,6 +3,8 @@ body {
   background-image: url("images/background.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Arial", sans-serif;
+  color: #333;
 }
 
 .container {
@@ -11,16 +13,28 @@ body {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  margin: 2% auto;
+  padding: 2%;
+  max-width: 800px;
+  border-radius: 10px;
 }
 
 .task-tabs {
   display: flex;
   border-bottom: 1px solid lightgray;
   position: relative;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .task-tabs div {
   padding: 1em;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.task-tabs div:hover {
+  background-color: rgba(163, 235, 240, 0.2);
 }
 
 .task-area {
@@ -33,7 +47,7 @@ body {
   background-color: pink;
   position: absolute;
   width: 63px;
-  left: 2px;
+  left: 276px;
   top: 47px;
   padding: 0px;
   transition: 0.5s;
@@ -43,11 +57,18 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 1em;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.task:hover {
+  background-color: #f0ff98;
 }
 
 .task-done {
   text-decoration: line-through;
   background-color: lightgray;
+  padding: 10px;
 }
 
 .task-tabs div {
@@ -60,6 +81,8 @@ body {
   border: none;
   padding: 0.5em 1em;
   cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  transition: background-color 0.3s;
 }
 
 #add-button:hover {
@@ -71,18 +94,52 @@ body {
   border: none;
   cursor: pointer;
   margin-right: 5px;
+  border-radius: 5px;
 }
 
 #done-button:hover {
   background-color: lightseagreen;
 }
 
+#return-button {
+  background-color: rgb(32, 255, 107);
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+#return-button:hover {
+  background-color: rgb(62, 193, 253);
+}
+
 #delete-button {
   background-color: pink;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #delete-button:hover {
   background-color: deeppink;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4a4a4a;
+}
+
+.input-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 0.5em;
+  border: 2px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  font-size: 1em;
 }
